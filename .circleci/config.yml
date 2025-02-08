@@ -32,6 +32,9 @@ jobs:
       - run: 
           name: Run Lighthouse CI
           command: npx lhci autorun --chrome-flags="--no-sandbox --ignore-certificate-errors"
+      - store-artifacts:
+          path: lighthouse-report
+          destination: lighthouse-report
   deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
