@@ -12,7 +12,7 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: npm
-      - run:
+      -run:
           command: npm run build
       - run:
           name: Create the ~/artifacts directory if it doesn't exist
