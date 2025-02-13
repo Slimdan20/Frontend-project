@@ -32,13 +32,13 @@ jobs:
           name: Start Vite Dev Server
           command: npm run dev
           background: true
+      - run: 
+          name: Run Lighthouse CI
+          command: npx lhci autorun --chrome-flags="--no-sandbox --ignore-certificate-errors"
       - run:
           command: npm install --global @percy/cli
       - run:
           command: npx percy exec -- npx cypress run
-      - run: 
-          name: Run Lighthouse CI
-          command: npx lhci autorun --chrome-flags="--no-sandbox --ignore-certificate-errors"
   deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
