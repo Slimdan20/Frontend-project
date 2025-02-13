@@ -17,10 +17,6 @@ jobs:
           name: Install Cypress
           command: npm install --save-dev cypress
       - run:
-          name: Verify Cypress installation
-          command: npx cypress --version
-
-      - run:
           command: npm run build
       - run:
           name: Create the ~/artifacts directory if it doesn't exist
