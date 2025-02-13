@@ -29,14 +29,16 @@ jobs:
           destination: node-build
       - browser-tools/install-chrome
       - run:
+          command: npm install --global @percy/cli
+      - run:
           name: Start Vite Dev Server
           command: npm run dev
           background: true
+      - run:
+          command: sleep 5
       - run: 
           name: Run Lighthouse CI
           command: npx lhci autorun --chrome-flags="--no-sandbox --ignore-certificate-errors"
-      - run:
-          command: npm install --global @percy/cli
       - run:
           command: npx percy exec -- npx cypress run
   deploy:
