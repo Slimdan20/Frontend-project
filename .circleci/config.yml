@@ -14,9 +14,6 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          name: Install Cypress
-          command: npm install --save-dev cypress
-      - run:
           command: npm run build
       - run:
           name: Create the ~/artifacts directory if it doesn't exist
