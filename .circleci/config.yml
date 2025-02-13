@@ -7,11 +7,14 @@ orbs:
 jobs:
   build-node:
     # Build node project
-    executor: node/default
+    docker:
+      - image: cypress/included:12.17.1
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: npm
+      - run:
+          command: npx cypress --version
       - run:
           command: npm run build
       - run:
@@ -29,6 +32,10 @@ jobs:
           name: Start Vite Dev Server
           command: npm run dev
           background: true
+      - run:
+          command: npm install --global @percy/cli
+      - run:
+          command: npx percy exec -- npx cypress run
       - run: 
           name: Run Lighthouse CI
           command: npx lhci autorun --chrome-flags="--no-sandbox --ignore-certificate-errors"
