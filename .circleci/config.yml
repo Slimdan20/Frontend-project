@@ -38,7 +38,7 @@ jobs:
           command: sleep 5
       - run: 
           name: Run Lighthouse CI
-          command: npx lhci autorun --chrome-flags="--no-sandbox --ignore-certificate-errors"
+          command: npx lhci autorun --config=lighthouserc.cjs --chrome-flags="--no-sandbox --ignore-certificate-errors"
       - run:
           command: npx percy exec -- npx cypress run
   deploy:
