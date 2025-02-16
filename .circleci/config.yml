@@ -7,8 +7,8 @@ orbs:
 
 jobs:
   build-node:
-    docker:
-      - image: cypress/included:12.17.1
+    # Build node project work
+    executor: node/default
     steps:
       - checkout
       - node/install-packages:
@@ -29,7 +29,9 @@ jobs:
           background: true
       - run: 
           name: Run Lighthouse CI
-          command: npx lhci autorun --chrome-flags="--no-sandbox --ignore-certificate-errors"        
+          command: npx lhci autorun --chrome-flags="--no-sandbox --ignore-certificate-errors" 
+      - run:
+          command: sudo apt-get install -y xvfb       
       - run:
            name: Run Cypress with Percy
            command: npx percy exec -- npx cypress run
