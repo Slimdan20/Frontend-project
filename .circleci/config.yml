@@ -37,18 +37,23 @@ jobs:
            command: npx percy exec -- npx cypress run
 
   deploy:
-    # This is an example deploy job, not actually used by the workflow
-    docker:
-      - image: cimg/base:stable
+    executor: node/default
     steps:
-      # Replace this with steps to deploy to users
+      - checkout
       - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
+           name: Install Vercel CLI
+           command: npm install -g vercel
+      - run:
+           command: vercel --token $VERCEL_TOKEN --prod --yes
+  
 workflows:
-  build:
+  version: 2
+  preview_and_production:
     jobs:
       - build-node
-    # - deploy:
-    #     requires:
-    #       - build-node
+      - deploy:
+          requires:
+            - build-node
+          filters:
+            branches:
+              only: main
