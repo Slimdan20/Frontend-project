@@ -1,4 +1,4 @@
-module.exports = { 
+export const ci = { 
     collect: { url: ['http://localhost:5173'], 
     }, 
     assert: { 
