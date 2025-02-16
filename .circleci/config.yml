@@ -29,7 +29,7 @@ jobs:
           background: true
       - run: 
           name: Run Lighthouse CI
-          command: npx lhci autorun --chrome-flags="--no-sandbox --ignore-certificate-errors" 
+          command: npx lhci autorun  
       - run:
           command: sudo apt-get install -y xvfb       
       - run:
