@@ -61,18 +61,20 @@ jobs:
            name: Deploy project to Vercel
            command: vercel --token $VERCEL_TOKEN --prod --yes  
 workflows:
-  build_and_deploy:
+  version: 2
+  preview_deployment:
     jobs:
      - build-node
-     - preview_deployment:
+     - preview:
          requires:
            - build-node
          filters:
            branches:
              ignore: main
-     - production_deployment:
+     - deploy:
          requires:
            - build-node
+           - preview
          filters:
            branches:
              only: main
