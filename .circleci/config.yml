@@ -30,7 +30,11 @@ jobs:
           background: true
       - run: 
           name: Run Lighthouse CI
-          command: npx lhci autorun       
+          command: npx lhci autorun  
+      - run:
+          # install xvfb to ensure cypress runs with percy
+          name: Install XVFB
+          command: sudo apt-get install -y xvfb     
       - run:
            name: Run Cypress with Percy
            command: npx percy exec -- npx cypress run
