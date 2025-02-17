@@ -9,7 +9,7 @@ jobs:
   build-node:
     # Build node project work
     docker: 
-      - image: cimg/node:16.13-browsers
+      - image: cimg/node:18.17-browsers
     steps:
       - checkout
       - node/install-packages:
@@ -37,7 +37,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/node:16.13-browsers
+      - image: cimg/node:18.17-browsers
     steps:
       - checkout
       - run:
