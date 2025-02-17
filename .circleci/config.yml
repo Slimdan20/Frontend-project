@@ -8,8 +8,7 @@ orbs:
 jobs:
   build-node:
     # Build node project work
-    docker: 
-      - image: cimg/node:18.17-browsers
+    executor: node/default
     steps:
       - checkout
       - node/install-packages:
@@ -37,8 +36,7 @@ jobs:
            command: npx percy exec -- npx cypress run
 
   deploy:
-    docker:
-      - image: cimg/node:18.17-browsers
+    executor: node/default
     steps:
       - checkout
       - run:
