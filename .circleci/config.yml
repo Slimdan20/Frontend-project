@@ -24,6 +24,7 @@ jobs:
       - store_artifacts:
           path: ~/artifacts
           destination: node-build
+      - browser-tools/install-chrome
       - run:
           name: Start development server
           command: npm run dev
