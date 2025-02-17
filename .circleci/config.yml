@@ -8,10 +8,10 @@ orbs:
 jobs:
   build-node:
     # Build node project work
-    executor: node/default
+    docker: 
+      - image: cimg/node:16.13-browsers
     steps:
       - checkout
-      - browser-tools/install-chrome
       - node/install-packages:
           pkg-manager: npm
       - run:
@@ -30,17 +30,14 @@ jobs:
           background: true
       - run: 
           name: Run Lighthouse CI
-          command: npx lhci autorun  
-      - run:
-          # Install xvfb to prevent Lighthouse CI from failing when Percy is included
-          name: Install XVFB
-          command: sudo apt-get install -y xvfb       
+          command: npx lhci autorun       
       - run:
            name: Run Cypress with Percy
            command: npx percy exec -- npx cypress run
 
   deploy:
-    executor: node/default
+    docker:
+      - image: cimg/node:16.13-browsers
     steps:
       - checkout
       - run:
