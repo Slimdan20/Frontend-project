@@ -11,6 +11,7 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - browser-tools/install-chrome
       - node/install-packages:
           pkg-manager: npm
       - run:
